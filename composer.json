@@ -16,7 +16,12 @@
         "laravel/framework": "^8.0",
         "laravel/nova": "*",
         "laravel/scout": "^8.4",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "beyondcode/viewcache": "*",
+        "beyondcode/nova-clock": "*",
+        "Beyondcode/string-limit": "*",
+        "beyondcode/string-limit": "*",
+        "beyondcode/nova-theme": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
@@ -42,10 +47,48 @@
             "Database\\Seeders\\": "database/seeders/"
         }
     },
-    "repositories": [{
-        "type": "path",
-        "url": "./nova"
-    }],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./nova"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/Viewcache"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/NovaClock"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/NovaClock"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/NovaClock"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/StringLimit"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/StringLimit"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/NovaTheme"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/NovaTheme"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/NovaTheme"
+        }
+    ],
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"

@@ -1,11 +1,16 @@
 <?php
 
-namespace App\Nova; 
+namespace App\Nova;
 
 use App\Nova\Actions\PublishPost;
 use App\Nova\Filters\PostCategories;
 use App\Nova\Filters\PostPublished;
 use App\Nova\Lenses\MostTags;
+use App\Nova\Metrics\PostCount;
+use App\Nova\Metrics\PostsPerCategory;
+use App\Nova\Metrics\PostsPerDay;
+use Beyondcode\NovaClock\NovaClock;
+use Beyondcode\StringLimit\StringLimit;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -16,10 +21,6 @@ use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
-
-use App\Nova\Metrics\PostCount;
-use App\Nova\Metrics\PostsPerDay;
-use App\Nova\Metrics\PostsPerCategory;
 
 class Post extends Resource
 {
@@ -80,7 +81,9 @@ class Post extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
 
-            Text::make('Title')->rules('required'),
+            // Text::make('Title')->rules('required'),
+
+            StringLimit::make('Title')->rules('required')->max(250),
 
             Trix::make('body')->rules('required'),
 
@@ -94,10 +97,10 @@ class Post extends Resource
             //             ->can('publish_post', $this);
             //     }),
 
-            Boolean::make('Is Published')
-                ->canSee(function ($request) {
-                    return false;
-                }),
+            Boolean::make('Is Published'),
+            // ->canSee(function ($request) {
+            //     return false;
+            // }),
 
             Select::make('Category')->options([
                 'tutorials' => 'Tutorials',
@@ -119,8 +122,9 @@ class Post extends Resource
     public function cards(Request $request)
     {
         return [
+            (new NovaClock)->displaySeconds(true)->blink(true),
             (new PostsPerDay)->width('full'),
-            (new PostCount)->width('1/2'),         
+            (new PostCount)->width('1/2'),
             (new PostsPerCategory)->width('1/2'),
         ];
     }
@@ -164,7 +168,7 @@ class Post extends Resource
             (new PublishPost)->canSee(function ($request) {
                 return true;
             })->canRun(function ($request, $post) {
-                return $post->id === 2;
+                return $post->id === 1;
             }),
         ];
     }

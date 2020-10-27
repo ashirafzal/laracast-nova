@@ -2,12 +2,15 @@
 
 namespace App\Providers;
 
-use App\Post;
-
+use Beyondcode\Viewcache\Viewcache;
+use Beyondcode\NovaClock\NovaClock;
 use Illuminate\Support\Facades\Gate;
-use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+
+use App\Nova\Metrics\PostCount;
+use App\Nova\Metrics\PostsPerDay;
+use App\Nova\Metrics\PostsPerCategory;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -58,7 +61,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Help,
+            // new Help,
+            (new NovaClock)->displaySeconds(true)->blink(true),
+            (new PostsPerDay)->width('full'),
+            (new PostCount)->width('1/2'),         
+            (new PostsPerCategory)->width('1/2'),
+            
         ];
     }
 
@@ -79,7 +87,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [];
+        return [
+            new Viewcache,
+        ];
     }
 
     /**

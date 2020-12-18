@@ -13,7 +13,11 @@
         "build-nova-clock": "cd nova-components/NovaClock && npm run dev",
         "build-nova-clock-prod": "cd nova-components/NovaClock && npm run prod",
         "build-string-limit": "cd nova-components/StringLimit && npm run dev",
-        "build-string-limit-prod": "cd nova-components/StringLimit && npm run prod"
+        "build-string-limit-prod": "cd nova-components/StringLimit && npm run prod",
+        "build-price-tracker": "cd nova-components/PriceTracker && npm run dev",
+        "build-price-tracker-prod": "cd nova-components/PriceTracker && npm run prod",
+        "build-UpdateOrder": "cd nova-components/UpdateOrder && npm run dev",
+        "build-UpdateOrder-prod": "cd nova-components/UpdateOrder && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.19",

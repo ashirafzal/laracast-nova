@@ -122,7 +122,7 @@ class Post extends Resource
     public function cards(Request $request)
     {
         return [
-            (new NovaClock)->displaySeconds(true)->blink(true),
+            (new NovaClock)->displaySeconds(true)->blink(true)->onlyOnDetail(),
             (new PostsPerDay)->width('full'),
             (new PostCount)->width('1/2'),
             (new PostsPerCategory)->width('1/2'),

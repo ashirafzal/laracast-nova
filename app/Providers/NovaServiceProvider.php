@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Acme\PriceTracker\PriceTracker;
+use App\Nova\Cards\Latestposts;
 use Beyondcode\Viewcache\Viewcache;
 use Beyondcode\NovaClock\NovaClock;
 use Illuminate\Support\Facades\Gate;
@@ -11,6 +13,8 @@ use Laravel\Nova\NovaApplicationServiceProvider;
 use App\Nova\Metrics\PostCount;
 use App\Nova\Metrics\PostsPerDay;
 use App\Nova\Metrics\PostsPerCategory;
+use Illuminate\Support\Facades\App;
+use LaracastNova\UpdateOrder\UpdateOrder;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -61,11 +65,30 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
+            new Latestposts,
             // new Help,
-            (new NovaClock)->displaySeconds(true)->blink(true),
-            (new PostsPerDay)->width('full'),
-            (new PostCount)->width('1/2'),         
-            (new PostsPerCategory)->width('1/2'),
+            // (new NovaClock)->displaySeconds(true)->blink(true),
+            // (new PostsPerDay)->width('full'),
+            // (new PostCount)->width('1/2'),         
+            // (new PostsPerCategory)->width('1/2'),
+             
+            // (new \Mako\CustomTableCard\CustomTableCard)
+            // ->header([
+            //     new \Mako\CustomTableCard\Table\Cell('Post ID'),
+            //     (new \Mako\CustomTableCard\Table\Cell('Post Text'))->class('text-left'),
+            // ])
+            // ->data([
+            //     (new \Mako\CustomTableCard\Table\Row(
+            //         new \Mako\CustomTableCard\Table\Cell('1'),
+            //         (new \Mako\CustomTableCard\Table\Cell('this is a post'))->class('text-left')->id('price-2')
+            //     ))->viewLink('nova/resources/posts/1'),
+            //     (new \Mako\CustomTableCard\Table\Row(
+            //         new \Mako\CustomTableCard\Table\Cell('2'),
+            //         (new \Mako\CustomTableCard\Table\Cell('this is a second post'))->class('text-left')->id('price-2')
+            //     )),
+            // ])
+            // ->title('Posts')
+            // ->viewall(['label' => 'View All', 'link' => '/nova/resources/posts']),
             
         ];
     }
@@ -89,6 +112,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             new Viewcache,
+            new PriceTracker(),
+            new UpdateOrder(),
         ];
     }
 

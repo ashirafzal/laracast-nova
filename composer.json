@@ -9,7 +9,13 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
+        "Beyondcode/string-limit": "*",
         "algolia/algoliasearch-client-php": "^2.7",
+        "beyondcode/nova-clock": "*",
+        "beyondcode/nova-theme": "*",
+        "beyondcode/nova-tinker-tool": "^1.1",
+        "beyondcode/string-limit": "*",
+        "beyondcode/viewcache": "*",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -17,11 +23,9 @@
         "laravel/nova": "*",
         "laravel/scout": "^8.4",
         "laravel/tinker": "^2.0",
-        "beyondcode/viewcache": "*",
-        "beyondcode/nova-clock": "*",
-        "Beyondcode/string-limit": "*",
-        "beyondcode/string-limit": "*",
-        "beyondcode/nova-theme": "*"
+        "m-a-k-o/nova-custom-table-card": "^3.0",
+        "acme/price-tracker": "*",
+        "laracast-nova/UpdateOrder": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
@@ -87,6 +91,14 @@
         {
             "type": "path",
             "url": "./nova-components/NovaTheme"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/PriceTracker"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/UpdateOrder"
         }
     ],
     "autoload-dev": {

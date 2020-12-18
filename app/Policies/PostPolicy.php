@@ -28,7 +28,7 @@ class PostPolicy
      * @param  \App\Models\Post  $post
      * @return mixed
      */
-    public function view(User $user, Post $post)
+    public function view(User $user)
     {
         return true;
     }
